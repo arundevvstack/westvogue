@@ -1,0 +1,78 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// User & Membership System
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  membership    MembershipLevel @default(STANDARD)
+  
+  // Relations
+  savedEditions SavedEdition[]
+  savedArticles SavedArticle[]
+  following     Follow[]
+}
+
+enum MembershipLevel {
+  STANDARD
+  BLACK
+  VIP
+}
+
+// Interactivity & Saves
+model SavedEdition {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  editionId String   // References Sanity Edition ID
+  createdAt DateTime @default(now())
+
+  @@unique([userId, editionId])
+}
+
+model SavedArticle {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  articleId String   // References Sanity Article ID
+  createdAt DateTime @default(now())
+
+  @@unique([userId, articleId])
+}
+
+model Follow {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entityId   String   // References Sanity ID (Designer, Brand, Model)
+  entityType EntityType
+  createdAt  DateTime @default(now())
+
+  @@unique([userId, entityId, entityType])
+}
+
+enum EntityType {
+  DESIGNER
+  BRAND
+  MODEL
+  VIRTUAL_MODEL
+}
+
+// Analytics & Intelligence Data
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  eventType String   // e.g. "VIEW_EDITION", "PLAY_FILM"
+  entityId  String?  // References Sanity ID
+  metadata  Json?
+  createdAt DateTime @default(now())
+}

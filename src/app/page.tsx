@@ -1,65 +1,63 @@
-import Image from "next/image";
+'use client'
+
+import dynamic from 'next/dynamic'
+import { useEffect } from 'react'
+import Lenis from 'lenis'
+
+// Lazy load the V4 Documentary Experience scenes
+const Scene01 = dynamic(() => import('@/components/home/v3/Scene01_Hero'), { ssr: false })
+const Scene02 = dynamic(() => import('@/components/home/v3/Scene02_CurrentEdition'))
+const Scene03 = dynamic(() => import('@/components/home/v3/Scene03_EditorsLetter'))
+const Scene04 = dynamic(() => import('@/components/home/v3/Scene04_LatestEditions'))
+const Scene05 = dynamic(() => import('@/components/home/v3/Scene05_NovaRaeUniverse'))
+const Scene06 = dynamic(() => import('@/components/home/v3/Scene06_FashionFilm'))
+const Scene07 = dynamic(() => import('@/components/home/v3/Scene07_EditorsPicks'))
+const Scene08 = dynamic(() => import('@/components/home/v3/Scene08_Intelligence'))
+const Scene09 = dynamic(() => import('@/components/home/v3/Scene09_GlobalMap'))
+const Scene10 = dynamic(() => import('@/components/home/v3/Scene10_ImageMosaic'))
+const Scene11 = dynamic(() => import('@/components/home/v3/Scene11_WestvogueBlack'))
+const Scene12 = dynamic(() => import('@/components/home/v3/Scene12_Footer'))
 
 export default function Home() {
+
+  // Initialize Lenis Smooth Scroll for Documentary Feel
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    })
+
+    function raf(time: number) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+
+    return () => {
+      lenis.destroy()
+    }
+  }, [])
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="relative w-full min-h-screen bg-black overflow-x-hidden selection:bg-white/30 text-white font-sans">
+      <Scene01 />
+      <Scene02 />
+      <Scene03 />
+      <Scene04 />
+      <Scene05 />
+      <Scene06 />
+      <Scene07 />
+      <Scene08 />
+      <Scene09 />
+      <Scene10 />
+      <Scene11 />
+      <Scene12 />
+    </main>
   );
 }
