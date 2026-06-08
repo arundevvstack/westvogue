@@ -30,7 +30,7 @@ export default function Scene05_NovaRaeUniverse() {
       
       {/* Immersive Portrait Background */}
       <motion.div style={{ y: portraitY, scale: portraitScale }} className="absolute inset-0 z-0 opacity-40 mix-blend-luminosity">
-        <img src="/media/media__1780859424575.jpg" alt="Nova Rae Universe" className="w-full h-full object-cover origin-top" />
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1600&auto=format&fit=crop" alt="Nova Rae Universe" className="w-full h-full object-cover origin-top" />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black" />
       </motion.div>
@@ -99,7 +99,7 @@ export default function Scene05_NovaRaeUniverse() {
         style={{ y: useTransform(scrollYProgress, [0, 1], [200, -200]) }}
         className="absolute right-20 top-1/3 w-64 aspect-[3/4] z-20 pointer-events-none hidden lg:block"
       >
-        <img src="/media/media__1780859424596.jpg" alt="Gallery 1" className="w-full h-full object-cover border border-white/10 shadow-2xl" />
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800&auto=format&fit=crop" alt="Gallery 1" className="w-full h-full object-cover border border-white/10 shadow-2xl" />
       </motion.div>
 
     </section>

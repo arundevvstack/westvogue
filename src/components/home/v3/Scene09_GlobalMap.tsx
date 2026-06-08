@@ -22,7 +22,7 @@ export default function Scene09_GlobalMap() {
       
       {/* Background Map Grid Simulation */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at center, rgba(255,255,255,0.2) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-      <div className="absolute inset-0 z-0 opacity-10 bg-[url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')] bg-center bg-no-repeat bg-contain mix-blend-screen" />
+      <div className="absolute inset-0 z-0 opacity-20 invert bg-[url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')] bg-center bg-no-repeat bg-contain" />
 
       <div className="absolute top-20 left-10 z-20">
         <span className="text-xs uppercase tracking-[0.4em] text-white/50 mb-4 font-mono block">Global Network</span>

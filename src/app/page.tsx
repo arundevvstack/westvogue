@@ -19,33 +19,8 @@ const Scene11 = dynamic(() => import('@/components/home/v3/Scene11_WestvogueBlac
 const Scene12 = dynamic(() => import('@/components/home/v3/Scene12_Footer'))
 
 export default function Home() {
-
-  // Initialize Lenis Smooth Scroll for Documentary Feel
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
-    })
-
-    function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-
-    return () => {
-      lenis.destroy()
-    }
-  }, [])
-
   return (
-    <main className="relative w-full min-h-screen bg-black overflow-x-hidden selection:bg-white/30 text-white font-sans">
+    <main className="relative w-full min-h-screen bg-black selection:bg-white/30 text-white font-sans">
       <Scene01 />
       <Scene02 />
       <Scene03 />

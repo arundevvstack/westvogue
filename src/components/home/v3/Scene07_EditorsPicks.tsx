@@ -3,9 +3,9 @@
 import { motion } from 'framer-motion'
 
 const PICKS = [
-  { topic: 'Digital Luxury', title: 'The Algorithm of Elegance', img: '/media/media__1780859424575.jpg', excerpt: 'How artificial intelligence is reshaping the atelier.' },
-  { topic: 'Modern Icons', title: 'Power Dressing 2026', img: '/media/media__1780859424596.jpg', excerpt: 'The new rules of corporate dominance and silhouette.' },
-  { topic: 'Fashion Intelligence', title: 'The Asian Market Boom', img: '/media/media__1780859424647.jpg', excerpt: 'Why Tokyo, Seoul, and Mumbai are the new fashion capitals.' }
+  { topic: 'Digital Luxury', title: 'The Algorithm of Elegance', img: 'https://images.unsplash.com/photo-1550614000-4b95d415eb1a?q=80&w=800&auto=format&fit=crop', excerpt: 'How artificial intelligence is reshaping the atelier.' },
+  { topic: 'Modern Icons', title: 'Power Dressing 2026', img: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800&auto=format&fit=crop', excerpt: 'The new rules of corporate dominance and silhouette.' },
+  { topic: 'Fashion Intelligence', title: 'The Asian Market Boom', img: 'https://images.unsplash.com/photo-1540221652346-e5dd6b50f3e7?q=80&w=800&auto=format&fit=crop', excerpt: 'Why Tokyo, Seoul, and Mumbai are the new fashion capitals.' }
 ]
 
 export default function Scene07_EditorsPicks() {

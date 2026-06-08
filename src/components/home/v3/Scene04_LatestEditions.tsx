@@ -11,7 +11,7 @@ const YOUTUBE_EDITIONS = [
     theme: 'Miss India 2021 First Runner-up',
     date: '2025',
     duration: '14:20',
-    img: '/media/media__1780859414021.jpg',
+    img: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1600&auto=format&fit=crop',
     videoId: 'dummy1' // Placeholder for actual YT ID
   },
   {
@@ -20,7 +20,7 @@ const YOUTUBE_EDITIONS = [
     theme: 'The Digital Renaissance',
     date: '2025',
     duration: '12:05',
-    img: '/media/media__1780859414045.jpg',
+    img: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1600&auto=format&fit=crop',
     videoId: 'dummy2'
   },
   {
@@ -29,7 +29,7 @@ const YOUTUBE_EDITIONS = [
     theme: 'Cultural Visions',
     date: '2025',
     duration: '18:45',
-    img: '/media/media__1780859414099.jpg',
+    img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop',
     videoId: 'dummy3'
   },
   {
@@ -38,7 +38,7 @@ const YOUTUBE_EDITIONS = [
     theme: 'Fashion Film Exclusive',
     date: '2025',
     duration: '06:30',
-    img: '/media/media__1780859414116.jpg',
+    img: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1600&auto=format&fit=crop',
     videoId: 'dummy4'
   }
 ]

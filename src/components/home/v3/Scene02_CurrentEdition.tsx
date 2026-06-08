@@ -14,7 +14,14 @@ export default function Scene02_CurrentEdition() {
   })
 
   // Deep Parallax for the entire section
-  const yOffset = useTransform(scrollYProgress, [0, 1], [100, -100])
+  const yOffset = useTransform(scrollYProgress, [0, 1], [150, -150])
+
+  // Refined, elegant 3D Scroll Animations (no janky cover opening)
+  const magRotateY = useTransform(scrollYProgress, [0, 0.5, 1], [25, 0, -25])
+  const magRotateX = useTransform(scrollYProgress, [0, 0.5, 1], [15, 0, 15])
+  const magScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1.05, 0.85])
+  const magZ = useTransform(scrollYProgress, [0, 0.5, 1], [-100, 20, -100])
+  const magOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.3, 1, 1, 0.3])
 
   return (
     <section ref={containerRef} className="w-full h-[150vh] bg-neutral-950 relative z-20 flex items-center justify-center overflow-hidden border-t border-white/10 perspective-1000">
@@ -25,39 +32,35 @@ export default function Scene02_CurrentEdition() {
       <motion.div style={{ y: yOffset }} className="w-full max-w-7xl px-10 flex flex-col md:flex-row items-center gap-20">
         
         {/* Left: 3D Floating Magazine */}
-        <div className="w-full md:w-1/2 flex justify-center perspective-[2000px]">
+        <div className="w-full md:w-1/2 flex justify-center perspective-[2500px]">
           <motion.div 
             className="w-[80%] max-w-[400px] aspect-[3/4] relative transform-style-3d cursor-pointer"
-            initial={{ rotateY: 20, rotateX: 10 }}
-            animate={{ 
-              rotateY: isHovered ? 0 : 20, 
-              rotateX: isHovered ? 0 : 10,
-              scale: isHovered ? 1.05 : 1,
-              z: isHovered ? 50 : 0
+            style={{ 
+              rotateY: magRotateY, 
+              rotateX: magRotateX,
+              scale: magScale,
+              z: magZ,
+              opacity: magOpacity
             }}
-            transition={{ type: "spring", stiffness: 100, damping: 20 }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
           >
-            {/* Front Cover */}
-            <div className="absolute inset-0 bg-neutral-900 border border-white/10 shadow-[20px_20px_50px_rgba(0,0,0,0.8)] origin-left transition-transform duration-1000 z-20 overflow-hidden" style={{ transform: isHovered ? 'rotateY(-15deg)' : 'rotateY(0deg)' }}>
-              <img src="/media/media__1780859404113.jpg" alt="Cover" className="w-full h-full object-cover" />
+            {/* Front Cover Only - clean and elegant */}
+            <div className="absolute inset-0 bg-neutral-900 shadow-[30px_30px_60px_rgba(0,0,0,0.9),-10px_-10px_20px_rgba(255,255,255,0.05)] z-20 overflow-hidden rounded-r-md">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" alt="Cover" className="w-full h-full object-cover" />
+              
+              {/* Glossy overlay reflection */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-50 mix-blend-overlay" />
             </div>
 
-            {/* Inner Spread (Preview Video) */}
-            <div className="absolute inset-0 bg-black border border-white/20 origin-left transition-transform duration-1000 z-10 overflow-hidden flex items-center justify-center" style={{ transform: isHovered ? 'rotateY(-5deg) translateZ(-2px)' : 'rotateY(0deg) translateZ(-2px)' }}>
-              {isHovered && (
-                <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-80">
-                  <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-model-walking-on-a-rooftop-34440-large.mp4" type="video/mp4" />
-                </video>
-              )}
-              <div className="absolute inset-0 bg-black/40 flex items-center justify-center pointer-events-none">
-                <Play className="w-12 h-12 text-white/50" />
-              </div>
+            {/* Thick Spine Simulation */}
+            <div className="absolute top-0 left-0 h-full w-8 bg-neutral-950 origin-left rotate-y-[90deg] border-y border-l border-white/5" />
+            
+            {/* Pages Edge Simulation */}
+            <div className="absolute top-0 right-0 h-full w-8 bg-[#ddd] origin-right -rotate-y-[90deg] flex flex-col justify-evenly overflow-hidden">
+              {Array.from({length: 20}).map((_, i) => (
+                 <div key={i} className="w-full h-[1px] bg-black/10" />
+              ))}
             </div>
 
-            {/* Spine */}
-            <div className="absolute top-0 right-0 h-full w-6 bg-neutral-800 origin-right rotate-y-90 border-y border-r border-white/10" />
           </motion.div>
         </div>
 
